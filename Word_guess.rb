@@ -37,6 +37,100 @@ class Visual
 
 end
 
+picture_1 = "
+     ,-‘’’’-.
+   ,'      _ `.
+  '       )_)  |
+ :              :
+ |              /
+  :            /
+   `.        ,'
+     `.    ,'
+       `.,'
+         `.   ,-._
+            `-'    "
+
+picture_2 = "
+     ,-‘’’’-.           ,-‘’’’-.
+   ,'      _ `.       ,'      _ `.
+  '       )_)  |     '       )_)  |
+ :              :   :              :
+ |              /   |              /
+  :            /     :            /
+   `.        ,'       `.        ,'
+     `.    ,'           `.    ,'
+       `.,'               `.,'
+         `.   ,-._          `.   ,-._
+            `-'                `-'    "
+picture_3 = "
+     ,-‘’’’-.           ,-‘’’’-.           ,-‘’’’-.
+   ,'      _ `.       ,'      _ `.       ,'      _ `.
+  '       )_)  |     '       )_)  |     '       )_)  |
+ :              :   :              :   :              :
+ |              /   |              /   |              /
+  :            /     :            /     :            /
+   `.        ,'       `.        ,'       `.        ,'
+     `.    ,'           `.    ,'           `.    ,'
+       `.,'               `.,'               `.,'
+         `.   ,-._          `.   ,-._          `.   ,-._
+            `-'                `-'               `-'     "
+
+picture_4 = "
+     ,-‘’’’-.           ,-‘’’’-.
+   ,'      _ `.       ,'      _ `.
+  '       )_)  |     '       )_)  |
+ :              :   :              :
+ |              /   |              /
+  :            /     :            /
+   `.        ,'       `.        ,'
+     `.    ,'           `.    ,'
+       `.,'               `.,'
+         `.   ,-._          `.   ,-._
+            `-'                `-'
+
+     ,-‘’’’-.           ,-‘’’’-.
+   ,'      _ `.       ,'      _ `.
+  '       )_)  |     '       )_)  |
+ :              :   :              :
+ |              /   |              /
+  :            /     :            /
+   `.        ,'       `.        ,'
+     `.    ,'           `.    ,'
+       `.,'               `.,'
+         `.   ,-._          `.   ,-._
+           `-'                `-'    "
+
+
+picture_5 = "
+                   ,-‘’’’-.           ,-‘’’’-.
+                 ,'      _ `.       ,'      _ `.
+                '       )_)  |     '       )_)  |
+              :              :   :              :
+              |              /   |              /
+                :            /     :            /
+                 `.        ,'       `.        ,'
+                   `.    ,'           `.    ,'
+                     `.,'               `.,'
+                       `.   ,-._          `.   ,-._
+                         `-'                `-'
+           ,-‘’’’-.           ,-‘’’’-.           ,-‘’’’-.
+         ,'      _ `.       ,'      _ `.       ,'      _ `.
+        '       )_)  |     '       )_)  |     '       )_)  |
+       :              :   :              :   :              :
+       |              /   |              /   |              /
+        :            /     :            /     :            /
+         `.        ,'       `.        ,'       `.        ,'
+           `.    ,'           `.    ,'           `.    ,'
+             `.,'               `.,'               `.,'
+               `.   ,-._          `.   ,-._          `.   ,-._
+                  `-'                `-'               `-'     "
+
+puts picture_1
+puts picture_2
+puts picture_3
+puts picture_4
+puts picture_5
+
 word_pool = [
   "plant",
   "payment",
@@ -65,6 +159,26 @@ def get_random_word(word_pool)
   return random_word
 end
 
+def check_guess(split_word, guess, word_template)
+  i = 0
+  split_word.each do |split_letter|
+      if split_letter == guess
+        word_template[i] = guess
+      end
+  i += 1
+  end
+end
+
+# def check_guess(split_word, guess, word_template)
+#   index = 0
+#   split_word.each do |letter|
+#     if "#{split_word[letter]}" == guess
+#       word_template[index] = guess
+#     end
+#     index += 1
+#   end
+# end
+
 random_word = get_random_word(word_pool)
 puts random_word
 
@@ -77,6 +191,8 @@ word_length = random_word.length
 word_template = Array.new(word_length, "_" )
 # end
 
+split_word = random_word.split('')
+
 # create_word_template(random_word)
 # puts word_template
 
@@ -86,6 +202,7 @@ puts "To play the game you will guess our secret word one letter at a time."
 puts "You start out with 5 incorrect guess. USE THEM WISELY\n"
 
 # display visual and length of word
+
 print word_template
 puts "\n\n"
 
@@ -96,12 +213,20 @@ while incorrect_guesses.length < 5
 
   if random_word.include? "#{guess}"
     puts "the word contains the guess"
+    check_guess(split_word, guess, word_template)
   else
     incorrect_guesses << guess
     puts " The current incorrect guesses are #{incorrect_guesses}"
   end
+  puts "#{word_template}"
+  puts "\n\n"
 end
 
+
+
+
+
+# *** losing message
 
 # # update secret word template
 # # reprint visual and incorrect_guesses
