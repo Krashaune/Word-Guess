@@ -1,26 +1,14 @@
 
 
 class SecretWord
-
 attr_accessor :word_template, :secret_word
 # generate secret word
   def initialize(word)
     @secret_word = secret_word
     @word_template = word_template
   end
-
-# display length of word with  _ _
 end
 
-def get_random_word(word_pool)
-  random_word = word_pool.sample
-  return random_word
-end
-
-# random_word = get_random_word(word_pool)
-
-# the_word = SecretWord.new(random_word)
-print random_word
 
 class Visual
 # display orginal visual
@@ -45,6 +33,8 @@ class Visual
   # end
 
 # optional print sentence of number of guesses left
+
+
 end
 
 word_pool = [
@@ -70,26 +60,53 @@ word_pool = [
   "suggest"
 ]
 
+def get_random_word(word_pool)
+  random_word = word_pool.sample
+  return random_word
+end
+
+random_word = get_random_word(word_pool)
+puts random_word
+
+# display length of word with  _ _
+# method to determine length of secret_word
+# and print _ _ for the number of letters
+
+# def create_word_template(random_word)
+word_length = random_word.length
+word_template = Array.new(word_length, "_" )
+# end
+
+# create_word_template(random_word)
+# puts word_template
+
+# Welcome user to game
+puts "Welcome to K & H Word Guess"
+puts "To play the game you will guess our secret word one letter at a time."
+puts "You start out with 5 incorrect guess. USE THEM WISELY\n"
+
+# display visual and length of word
+print word_template
+puts "\n\n"
+
+incorrect_guesses =[]
+while incorrect_guesses.length < 5
+  puts "Choose a letter"
+  guess = gets.chomp
+
+  if random_word.include? "#{guess}"
+    puts "the word contains the guess"
+  else
+    incorrect_guesses << guess
+    puts " The current incorrect guesses are #{incorrect_guesses}"
+  end
+end
 
 
-
-
-
-# #Welcome user to game
-# puts "Welcome to K & H Word Guess"
-# puts "To play the game you will guess our secret word one letter at a time."
-# puts "You start out with 5 incorrect guess. USE THEM WISELY!"
-#
-# #display visual and length of word
-# incorrect_guesses =[]
-# puts "Choose a letter"
-# guess = gets.chomp
-# # if guess == correct letter
 # # update secret word template
 # # reprint visual and incorrect_guesses
 #
-# # if guess != correct letter
-# incorrect_guesses << guess
+
 # # reprint secret word template
 # # update and print visual and  print incorrect_guesses
 
