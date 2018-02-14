@@ -1,21 +1,21 @@
 
-class SecretWord
-attr_accessor :word_template, :secret_word
-# generate secret word
-  def initialize(word)
-    @secret_word = secret_word
-    @word_template = word_template
-  end
-end
-
-
-class Visual
-# display orginal visual
-  def initialize(photo)
-    @photo = photo
-  end
-
-end
+# class SecretWord
+# attr_accessor :word_template, :secret_word
+# # generate secret word
+#   def initialize(word)
+#     @secret_word = secret_word
+#     @word_template = word_template
+#   end
+# end
+#
+#
+# class Visual
+# # display orginal visual
+#   def initialize(photo)
+#     @photo = photo
+#   end
+#
+# end
 
 picture_1 = "
      ,-‘’’’-.
@@ -196,6 +196,7 @@ while incorrect_guesses.length < 5
     check_guess(split_word, guess, word_template)
     if word_template.include?("_") == false
       puts "Congratulations - you win!!"
+      exit
     end
 # *** allow user to win
 # — if all letters guessed before max of guess left
@@ -221,6 +222,7 @@ while incorrect_guesses.length < 5
     print picture_1
   when  5
     print "Game Over! The word was #{random_word}!"
+    exit
   end
   puts "\n\n"
   puts "You have #{(5 - wrong_guess_count)} guess(es) left!"
@@ -237,4 +239,4 @@ end
 
 
 
-# —  ask user if they want to play again and start game over if yes
+# —  ask user if they want to play again and start gameover if yes
